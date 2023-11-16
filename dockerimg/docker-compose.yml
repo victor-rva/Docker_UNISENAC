@@ -1,0 +1,20 @@
+version: '3'
+
+volumes:
+    alunosdata:
+
+networks:
+    backend:
+
+services:
+
+    mysql:
+      image: "mysql:5.7"
+      volumes:
+        - alunosdata:/var/lib/mysql
+        - ./_MySQL_Init_Script:/Docker-entrypoint-initdb.d
+      networks:
+        - backend
+      environment:
+        - MYSQL_ROOT_PASSWORD=numsey
+        - bind-address=0.0.0.0
